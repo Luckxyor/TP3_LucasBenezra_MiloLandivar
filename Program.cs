@@ -5,7 +5,6 @@ class Program
 {
     static void Main(string[] args)
     {
-        Cliente cliente=new Cliente();
         int opcion;
         do{
             Console.WriteLine();
@@ -20,7 +19,7 @@ class Program
             switch (opcion)
             {
                 case 1:
-                    NuevaInscripcion(cliente);
+                    NuevaInscripcion();
                     break;
                 case 2:
                     EstadisticasEvento();
@@ -39,7 +38,8 @@ class Program
             }
         }while (opcion!=5);
     }
-    static void NuevaInscripcion(Cliente cliente){
+    static void NuevaInscripcion(){
+        Cliente cliente=new Cliente();
         string apellido, nombre, leer;
         int dni, tipoEntrada, cantidad, abonar;
         bool funciona;
@@ -50,11 +50,11 @@ class Program
         do{
             leer=MiConsola.Leer("Ingrese el Apellido");
             apellido=leer;
-        }while(apellido==null);
+        }while(apellido=="");
         do{
             leer=MiConsola.Leer("Ingrese el Nombre");
             nombre=leer;
-        }while(nombre==null);
+        }while(nombre=="");
         do{
             leer=MiConsola.Leer("Ingrese el Tipo de Entrada");
             funciona=int.TryParse(leer, out tipoEntrada);
@@ -65,7 +65,7 @@ class Program
         }while(funciona==false||cantidad<1);
 
         abonar=MiConsola.Abono(tipoEntrada, cantidad);
-        Console.WriteLine($"Cantidad a abonar $: {abonar}");
+        Console.WriteLine($"Cantidad a abonar: ${abonar}");
 
         cliente.ModificarPriv(dni,apellido,nombre);
         cliente.FechaInscripcion=DateTime.Now;
@@ -73,10 +73,12 @@ class Program
         cliente.Cantidad=cantidad;
         int id=Tiquetera.AgregarCliente(cliente);
         Console.WriteLine($"Se ha creado el nuevo Cliente con ID de entrada: {id}");
-        Console.WriteLine(Tiquetera.DevolverUltimoID());
     }
     static void EstadisticasEvento(){
-
+        Tiquetera.IngresarLista();
+        foreach(string valor in Tiquetera.EstadisticasTicketera){
+            Console.WriteLine(valor);
+        }
     }
     static void BuscarCliente(){
         int id;

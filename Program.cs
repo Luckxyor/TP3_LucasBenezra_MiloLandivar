@@ -75,9 +75,12 @@ class Program
         Console.WriteLine($"Se ha creado el nuevo Cliente con ID de entrada: {id}");
     }
     static void EstadisticasEvento(){
-        Tiquetera.IngresarLista();
-        foreach(string valor in Tiquetera.EstadisticasTicketera){
-            Console.WriteLine(valor);
+        if(Tiquetera.DevolverUltimoID()>0){
+            Tiquetera.IngresarLista();
+            foreach(string estadistica in Tiquetera.EstadisticasTicketera){
+                Console.WriteLine(estadistica);
+                Console.WriteLine();
+            }
         }
     }
     static void BuscarCliente(){

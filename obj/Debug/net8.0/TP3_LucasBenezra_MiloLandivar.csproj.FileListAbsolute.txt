@@ -13,3 +13,18 @@ D:\Prog2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\refint\TP3_LucasBenez
 D:\Prog2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.pdb
 D:\Prog2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.genruntimeconfig.cache
 D:\Prog2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\ref\TP3_LucasBenezra_MiloLandivar.dll
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\bin\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.exe
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\bin\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.deps.json
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\bin\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.runtimeconfig.json
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\bin\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.dll
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\bin\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.pdb
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.GeneratedMSBuildEditorConfig.editorconfig
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.AssemblyInfoInputs.cache
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.AssemblyInfo.cs
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.csproj.CoreCompileInputs.cache
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.sourcelink.json
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.dll
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\refint\TP3_LucasBenezra_MiloLandivar.dll
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.pdb
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\TP3_LucasBenezra_MiloLandivar.genruntimeconfig.cache
+Z:\Prog 2024\TP3_LucasBenezra_MiloLandivar\obj\Debug\net8.0\ref\TP3_LucasBenezra_MiloLandivar.dll

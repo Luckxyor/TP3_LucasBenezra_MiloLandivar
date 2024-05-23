@@ -7,14 +7,7 @@ class Program
     {
         int opcion;
         do{
-            Console.WriteLine();
-            Console.WriteLine("1) Nueva Inscripción");
-            Console.WriteLine("2) Obtener Estadísticas del Evento");
-            Console.WriteLine("3) Buscar Cliente");
-            Console.WriteLine("4) Cambiar entrada de un Cliente");
-            Console.WriteLine("5) Salir");
-            Console.Write("Seleccione una opción: ");
-            opcion = int.Parse(Console.ReadLine());
+            opcion = Menu();
             Console.WriteLine();
             switch (opcion)
             {
@@ -38,35 +31,34 @@ class Program
             }
         }while (opcion!=5);
     }
+    static int Menu(){
+        Console.WriteLine();
+        Console.WriteLine("1) Nueva Inscripción");
+        Console.WriteLine("2) Obtener Estadísticas del Evento");
+        Console.WriteLine("3) Buscar Cliente");
+        Console.WriteLine("4) Cambiar entrada de un Cliente");
+        Console.WriteLine("5) Salir");
+        int opcion=MiConsola.LeerInt("Seleccione una opción: ");
+        return opcion;
+    }
     static void NuevaInscripcion(){
         Cliente cliente=new Cliente();
-        string apellido, nombre, leer;
+        string apellido, nombre;
         int dni, tipoEntrada, cantidad, abonar;
-        bool funciona;
         do{
-            leer=MiConsola.Leer("Ingrese el DNI");
-            funciona=int.TryParse(leer, out dni);
-        }while(funciona==false||dni<1);
+            dni=MiConsola.LeerInt("Ingrese el DNI");
+        }while(dni<1);
+        apellido=MiConsola.LeerString("Ingrese el Apellido");
+        nombre=MiConsola.LeerString("Ingrese el Nombre");
         do{
-            leer=MiConsola.Leer("Ingrese el Apellido");
-            apellido=leer;
-        }while(apellido=="");
+            tipoEntrada=MiConsola.LeerInt("Ingrese el Tipo de Entrada");
+        }while(tipoEntrada<1||tipoEntrada>4);
         do{
-            leer=MiConsola.Leer("Ingrese el Nombre");
-            nombre=leer;
-        }while(nombre=="");
-        do{
-            leer=MiConsola.Leer("Ingrese el Tipo de Entrada");
-            funciona=int.TryParse(leer, out tipoEntrada);
-        }while(funciona==false||tipoEntrada<1||tipoEntrada>4);
-        do{
-            leer=MiConsola.Leer("Ingrese la cantidad");
-            funciona=int.TryParse(leer, out cantidad);
-        }while(funciona==false||cantidad<1);
+            cantidad=MiConsola.LeerInt("Ingrese la cantidad");
+        }while(cantidad<1);
 
         abonar=MiConsola.Abono(tipoEntrada, cantidad);
         Console.WriteLine($"Cantidad a abonar: ${abonar}");
-
         cliente.ModificarPriv(dni,apellido,nombre);
         cliente.FechaInscripcion=DateTime.Now;
         cliente.TipoEntrada=tipoEntrada;
@@ -76,20 +68,18 @@ class Program
     }
     static void EstadisticasEvento(){
         if(Tiquetera.DevolverUltimoID()>0){
-            Tiquetera.IngresarLista();
-            foreach(string estadistica in Tiquetera.EstadisticasTicketera){
+            List<string> lista= Tiquetera.EstadisticasTicketera();
+            foreach(string estadistica in lista){
                 Console.WriteLine(estadistica);
                 Console.WriteLine();
             }
         }
+        else{Console.WriteLine("Aún no se anotó nadie");}
     }
     static void BuscarCliente(){
-        int id;
-        bool funciona;
-        string leer=MiConsola.Leer("Ingrese el ID de Entrada a buscar");
-        funciona=int.TryParse(leer, out id);
-        if(funciona||id>0){
-            Cliente cliente= Tiquetera.BuscarCliente(id);
+        int id=MiConsola.LeerInt("Ingrese el ID de Entrada a buscar");
+        Cliente cliente= Tiquetera.BuscarCliente(id);
+        if(cliente!=null){
             Console.WriteLine($"El DNI es: {cliente.DNI}");
             Console.WriteLine($"El Nombre es: {cliente.Nombre}");
             Console.WriteLine($"El Apellido es: {cliente.Apellido}");
@@ -100,21 +90,15 @@ class Program
         else{Console.WriteLine("No existe ese ID de Entrada");}
     }
     static void CambiarEntrada(){
-        bool sePudo, funciona;
-        string leer;
+        bool sePudo;
         int id, tipoEntrada, cantidad;
+        id=MiConsola.LeerInt("Ingrese el ID");
         do{
-            leer=MiConsola.Leer("Ingrese el ID");
-            funciona=int.TryParse(leer, out id);
-        }while(funciona==false||id<1||id>Tiquetera.DevolverUltimoID());
+            tipoEntrada=MiConsola.LeerInt("Ingrese el Tipo de Entrada");
+        }while(tipoEntrada<1||tipoEntrada>4);
         do{
-            leer=MiConsola.Leer("Ingrese el Tipo de Entrada");
-            funciona=int.TryParse(leer, out tipoEntrada);
-        }while(funciona==false||tipoEntrada<1||tipoEntrada>4);
-        do{
-            leer=MiConsola.Leer("Ingrese la cantidad");
-            funciona=int.TryParse(leer, out cantidad);
-        }while(funciona==false||cantidad<1);
+            cantidad=MiConsola.LeerInt("Ingrese la cantidad");
+        }while(cantidad<1);
         sePudo=Tiquetera.CambiarEntrada(id, tipoEntrada, cantidad);
         Console.WriteLine($"Se pudo cambiar la entrada={sePudo}");
     }

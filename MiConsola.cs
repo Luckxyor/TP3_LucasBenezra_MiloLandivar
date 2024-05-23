@@ -1,9 +1,21 @@
 public static class MiConsola{
-    public static string Leer(string mensaje){
+    public static string LeerString(string mensaje){
         string leer;
-        Console.WriteLine(mensaje);
-        leer=Console.ReadLine();
-        return leer;
+        do{
+            Console.WriteLine(mensaje);
+            leer=Console.ReadLine();
+            return leer;
+        }while(leer=="");
+    }
+    public static int LeerInt(string mensaje){
+        bool Pude = false;
+        int valor = 0;
+        while (!Pude)
+        {
+            Console.WriteLine(mensaje);
+            Pude = int.TryParse(Console.ReadLine(), out valor);
+        }
+        return valor;
     }
     public static int Abono(int tipoEntrada, int cantidad){
         int abono=0;

@@ -11,7 +11,10 @@ public static class Tiquetera{
         return UltimoIDEntrada;
     }
     public static Cliente BuscarCliente(int id){
-        Cliente cliente=dicCliente[id];
+        Cliente cliente=new Cliente();
+        if (dicCliente.ContainsKey(id)){
+            cliente=dicCliente[id];
+        }
         return cliente;
     }
     public static bool CambiarEntrada(int id, int tipoEntrada, int cantidad){
@@ -66,35 +69,42 @@ public static class Tiquetera{
             break;
         }
     }
-    public static List<string> EstadisticasTicketera= new List<string>();
-    public static void IngresarLista(){
-        int cantEnt1=0, cantEnt2=0, cantEnt3=0, cantEnt4=0, entradasTotal;
-        EstadisticasTicketera.Clear();
-        foreach(Cliente valor in dicCliente.Values){
-            switch (valor.TipoEntrada){
+    public static List<string> EstadisticasTicketera(){
+        int cantEnt1=0, cantEnt2=0, cantEnt3=0, cantEnt4=0, clien1=0, clien2=0, clien3=0, clien4=0, entradasTotal;
+        List<string> estadisticas = new List<string>();
+        foreach(Cliente cliente in dicCliente.Values){
+            switch (cliente.TipoEntrada){
             case 1:
-                cantEnt1++;
+                cantEnt1+=cliente.Cantidad;
+                clien1++;
             break;
             case 2:
-                cantEnt2++;
+                cantEnt2+=cliente.Cantidad;
+                clien2++;
             break;
             case 3:
-                cantEnt3++;
+                cantEnt3+=cliente.Cantidad;
+                clien3++;
             break;
             case 4:
-                cantEnt4++;
+                cantEnt4+=cliente.Cantidad;
+                clien4++;
             break;
             }
         }
+        int[] clientesArr = {clien1, clien2, clien3, clien4};
+        int[] entradas = {cantEnt1, cantEnt2, cantEnt3, cantEnt4};
+        int[] abonos={Abono1,Abono2,Abono3,Abono4};
         entradasTotal=cantEnt1+cantEnt2+cantEnt3+cantEnt4;
-        double porc1= (cantEnt1/dicCliente.Count)*100;
-        double porc2= (cantEnt2/dicCliente.Count)*100;
-        double porc3= (cantEnt3/dicCliente.Count)*100;
-        double porc4= (cantEnt4/dicCliente.Count)*100;
-        EstadisticasTicketera.Add($"La cantidad de clientes inscriptos es de {dicCliente.Count}");
-        EstadisticasTicketera.Add($"La cantidad de clientes que compraron la entrada tipo '1' fue de: {cantEnt1} | La cantidad de clientes que compraron la entrada tipo '2' fue de: {cantEnt2} | La cantidad de clientes que compraron la entrada tipo '3' fue de: {cantEnt3} | La cantidad de clientes que compraron la entrada tipo '4' fue de: {cantEnt4}");
-        EstadisticasTicketera.Add($"El porcentaje de entradas compradas tipo '1' con respecto del total es del {porc1}% | El porcentaje de entradas compradas tipo '2' con respecto del total es del {porc2}% | El porcentaje de entradas compradas tipo '3' con respecto del total es del {porc3}% | El porcentaje de entradas compradas tipo '4' con respecto del total es del {porc4}%");
-        EstadisticasTicketera.Add($"La recaudación de la entrada tipo '1' fue de ${Abono1} | La recaudación de la entrada tipo '2' fue de ${Abono2} | La recaudación de la entrada tipo '3' fue de ${Abono3} | La recaudación de la entrada tipo '4' fue de ${Abono4}");
-        EstadisticasTicketera.Add($"La recaudación total fue de ${AbonoTotal}");
+        estadisticas.Add($"La cantidad de clientes inscriptos es de: {dicCliente.Count}");
+        for(int i=0; i<4; i++){
+            estadisticas.Add($"La cantidad de clientes que compraron la entrada tipo '{i+1}' fue de: {clientesArr[i]}");
+            if(entradas[i]>0){
+                estadisticas.Add($"El porcentaje de entradas compradas tipo '{i+1}' con respecto del total es del " + entradas[i]*100/entradasTotal + "%"); 
+            }
+            estadisticas.Add($"La recaudación de la entrada tipo '{i+1}' fue de ${abonos[i]}");
+        }
+        estadisticas.Add($"La recaudación total fue de ${AbonoTotal}");
+        return estadisticas;
     }
 }
